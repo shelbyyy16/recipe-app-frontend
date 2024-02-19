@@ -1,20 +1,68 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View, Pressable } from "react-native";
+import Icon from "react-native-ico-material-design";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello World!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+var iconHeight = 26;
+var iconWidth = 26;
+
+export default class App extends React.Component {
+  state = {
+    screenText: "Press a button!",
+  };
+
+  changeText = (text) => {
+    console.log(text + "has been pressed");
+    this.setState({
+      screenText: text,
+    });
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={{fontSize:30, color:'white'}}>{this.state.screenText}</Text>
+          <StatusBar style="light" />
+        </View>
+        <View style={styles.NavContainer}>
+          <View style={styles.NavBar}>
+          <Pressable onPress={() => this.changeText('Favorites')} style={styles.IconBehave}>
+
+          </Pressable>
+
+          </View>
+
+
+        </View>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#3962FF",
+    alignItems: "center",
+    justifyContent: "center",
   },
+
+  NavContainer: {
+    position: 'absolute',
+    alignItems: 'center',
+    bottom: 20,
+  },
+
+  NavBar: {
+    flexDirection: 'row',
+    backgroundColor: '#eee',
+    width: '90%',
+    justifyContent: 'space-evenly',  
+    borderRadius: 40
+  },
+
+  IconBehave: {
+    padding: 14
+  }
 });
