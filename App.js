@@ -1,14 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import Icon from "react-native-ico-material-design";
+import Icon from "react-native-ico-material-design" 
 
 var iconHeight = 26;
 var iconWidth = 26;
 
 export default class App extends React.Component {
   state = {
-    screenText: "Press a button!",
+    screenText: "Jason's Recipe App!",
   };
 
   changeText = (text) => {
@@ -27,8 +27,25 @@ export default class App extends React.Component {
         </View>
         <View style={styles.NavContainer}>
           <View style={styles.NavBar}>
-          <Pressable onPress={() => this.changeText('Favorites')} style={styles.IconBehave}>
 
+          <Pressable onPress={() => this.changeText('Home')} style={styles.IconBehave}
+          android_ripple={{borderless:true, radius:50}}>
+            <Icon name="home-button" height={iconHeight} width={iconWidth} color='#448aff'/>
+          </Pressable>
+
+          <Pressable onPress={() => this.changeText('Favorites')} style={styles.IconBehave}
+          android_ripple={{borderless:true, radius:50}}>
+            <Icon name="favorite-heart-button" height={iconHeight} width={iconWidth} color='#448aff'/>
+          </Pressable>
+
+          <Pressable onPress={() => this.changeText('Create')} style={styles.IconBehave}
+          android_ripple={{borderless:true, radius:50}}>
+            <Icon name="add-button-inside-black-circle" height={iconHeight} width={iconWidth} color='#448aff'/>
+          </Pressable>
+
+          <Pressable onPress={() => this.changeText('Settings')} style={styles.IconBehave}
+          android_ripple={{borderless:true, radius:50}}>
+            <Icon name="settings-cogwheel-button" height={iconHeight} width={iconWidth} color='#448aff'/>
           </Pressable>
 
           </View>
