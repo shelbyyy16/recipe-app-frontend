@@ -2,6 +2,11 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import Icon from "react-native-ico-material-design" 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from "./screens/HomeScreen";
+import FavoritesScreen from "./screens/FavoritesScreen";
+import CreateScreen from "./screens/CreateScreen";
 
 var iconHeight = 26;
 var iconWidth = 26;
