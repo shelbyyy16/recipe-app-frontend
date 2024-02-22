@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View} from "react-native";
 import Icon from "react-native-ico-material-design" 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from "./screens/HomeScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
 import CreateScreen from "./screens/CreateScreen";
@@ -11,55 +12,43 @@ import CreateScreen from "./screens/CreateScreen";
 var iconHeight = 26;
 var iconWidth = 26;
 
-export default class App extends React.Component {
-  state = {
-    screenText: "Jason's Recipe App!",
-  };
+const Tab = createBottomTabNavigator();
 
-  changeText = (text) => {
-    console.log(text + "has been pressed");
-    this.setState({
-      screenText: text,
-    });
-  };
+function MyTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View>
-          <Text style={{fontSize:30, color:'white'}}>{this.state.screenText}</Text>
-          <StatusBar style="light" />
-        </View>
-        <View style={styles.NavContainer}>
-          <View style={styles.NavBar}>
+          if (route.name === 'Home') {
+            iconName = 'home-button'; 
+          } else if (route.name === 'Favorites') {
+            iconName = 'favorite-heart-button'; 
+          } else if (route.name === 'Create') {
+            iconName = 'add-button-inside-black-circle'; 
+          }
+        
+          return <Icon name={iconName} height={size} width={size} color={color} />;
+        },
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+        tabBarStyle: [{ display: 'flex' }, null]
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Favorites" component={FavoritesScreen} />
+      <Tab.Screen name="Create" component={CreateScreen} />
+    </Tab.Navigator>
+  );
+}
 
-          <Pressable onPress={() => this.changeText('Home')} style={styles.IconBehave}
-          android_ripple={{borderless:true, radius:50}}>
-            <Icon name="home-button" height={iconHeight} width={iconWidth} color='#448aff'/>
-          </Pressable>
-
-          <Pressable onPress={() => this.changeText('Favorites')} style={styles.IconBehave}
-          android_ripple={{borderless:true, radius:50}}>
-            <Icon name="favorite-heart-button" height={iconHeight} width={iconWidth} color='#448aff'/>
-          </Pressable>
-
-          <Pressable onPress={() => this.changeText('Create')} style={styles.IconBehave}
-          android_ripple={{borderless:true, radius:50}}>
-            <Icon name="add-button-inside-black-circle" height={iconHeight} width={iconWidth} color='#448aff'/>
-          </Pressable>
-
-          <Pressable onPress={() => this.changeText('Settings')} style={styles.IconBehave}
-          android_ripple={{borderless:true, radius:50}}>
-            <Icon name="settings-cogwheel-button" height={iconHeight} width={iconWidth} color='#448aff'/>
-          </Pressable>
-
-          </View>
-
-
-        </View>
-      </View>
-    );
-  }
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
