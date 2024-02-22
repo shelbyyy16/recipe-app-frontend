@@ -7,10 +7,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from "./screens/HomeScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
-import CreateScreen from "./screens/CreateScreen";
+import AddRecipeScreen from "./screens/AddRecipeScreen";
 
-var iconHeight = 26;
-var iconWidth = 26;
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +23,7 @@ function MyTabs() {
             iconName = 'home-button'; 
           } else if (route.name === 'Favorites') {
             iconName = 'favorite-heart-button'; 
-          } else if (route.name === 'Create') {
+          } else if (route.name === 'Add Recipe') {
             iconName = 'add-button-inside-black-circle'; 
           }
         
@@ -38,7 +36,7 @@ function MyTabs() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Favorites" component={FavoritesScreen} />
-      <Tab.Screen name="Create" component={CreateScreen} />
+      <Tab.Screen name="Add Recipe" component={AddRecipeScreen} />
     </Tab.Navigator>
   );
 }
