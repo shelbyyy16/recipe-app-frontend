@@ -3,14 +3,20 @@ import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
 
 const AddRecipeScreen = () => {
   const [recipeName, setRecipeName] = useState('');
+  const [recipeIngredients, setRecipeIngredients] = useState('');
+  const [recipeInstructions, setRecipeInstructions] = useState('');
 
   const addRecipe = () => {
-    fetch('http://your-backend-url/api/recipes', {
+    fetch('http://localhost:3000/api/recipes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: recipeName }),
+      body: JSON.stringify({
+        name: recipeName,
+        ingredients: recipeIngredients,
+        instructions: recipeInstructions,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -28,6 +34,16 @@ const AddRecipeScreen = () => {
         placeholder="Recipe Name"
         value={recipeName}
         onChangeText={(text) => setRecipeName(text)}
+      />
+      <TextInput
+        placeholder="Ingredients"
+        value={recipeIngredients}
+        onChangeText={(text) => setRecipeIngredients(text)}
+      />
+      <TextInput
+        placeholder="Instructions"
+        value={recipeInstructions}
+        onChangeText={(text) => setRecipeInstructions(text)}
       />
       <Button title="Add Recipe" onPress={addRecipe} />
     </View>
