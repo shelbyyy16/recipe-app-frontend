@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from "./screens/HomeScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
 import AddRecipeScreen from "./screens/AddRecipeScreen";
+import MyRecipesScreen from "./screens/MyRecipesScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -21,10 +22,12 @@ function MyTabs() {
 
           if (route.name === 'Home') {
             iconName = 'home-button'; 
-          } else if (route.name === 'Favorites') {
-            iconName = 'favorite-heart-button'; 
           } else if (route.name === 'Add Recipe') {
-            iconName = 'add-button-inside-black-circle'; 
+            iconName = 'rounded-add-button'; 
+          } else if (route.name === 'My Recipes') {
+            iconName = 'copy-content';
+          } else if (route.name === 'Favorites') {
+            iconName = 'favorite-heart-outline-button'; 
           }
         
           return <Icon name={iconName} height={size} width={size} color={color} />;
@@ -35,8 +38,9 @@ function MyTabs() {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Favorites" component={FavoritesScreen} />
       <Tab.Screen name="Add Recipe" component={AddRecipeScreen} />
+      <Tab.Screen name="My Recipes" component={MyRecipesScreen} />
+      <Tab.Screen name="Favorites" component={FavoritesScreen} />
     </Tab.Navigator>
   );
 }
@@ -49,29 +53,29 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#3962FF",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#3962FF",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
 
-  NavContainer: {
-    position: 'absolute',
-    alignItems: 'center',
-    bottom: 20,
-  },
+//   NavContainer: {
+//     position: 'absolute',
+//     alignItems: 'center',
+//     bottom: 20,
+//   },
 
-  NavBar: {
-    flexDirection: 'row',
-    backgroundColor: '#eee',
-    width: '90%',
-    justifyContent: 'space-evenly',  
-    borderRadius: 40
-  },
+//   NavBar: {
+//     flexDirection: 'row',
+//     backgroundColor: '#eee',
+//     width: '90%',
+//     justifyContent: 'space-evenly',  
+//     borderRadius: 40
+//   },
 
-  IconBehave: {
-    padding: 14
-  }
-});
+//   IconBehave: {
+//     padding: 14
+//   }
+// });
