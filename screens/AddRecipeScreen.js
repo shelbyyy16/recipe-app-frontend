@@ -7,7 +7,7 @@ const AddRecipeScreen = () => {
   const [recipeInstructions, setRecipeInstructions] = useState('');
 
   const addRecipe = () => {
-    fetch('https://frozen-castle-13535-f4816b79f6af.herokuapp.com/', {
+    fetch('https://frozen-castle-13535-f4816b79f6af.herokuapp.com/api/recipes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

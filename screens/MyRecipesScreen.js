@@ -7,7 +7,7 @@ const MyRecipesScreen = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('https://frozen-castle-13535-f4816b79f6af.herokuapp.com/');
+        const response = await fetch('https://frozen-castle-13535-f4816b79f6af.herokuapp.com/api/recipes');
         const data = await response.json();
         setRecipes(data);
       } catch (error) {
